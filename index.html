@@ -5,10 +5,27 @@ layout: default
 <div class="tile-grid">
 {% for s in site.data.services %}
 {% assign size = s.size | default: 'square' %}
-  <a class="{% if size == 'wide' %}tile-wide{% else %}tile{% endif %} bg-ctp-{{ s.color | default: 'pink' }}" href="{{ s.url }}" style="animation-delay: {{ forloop.index0 | times: 70 | plus: 180 }}ms"{% if s.desc %} title="{{ s.desc }}"{% endif %}>
-    <div class="tile-content iconic"><span class="icon{% if s.wordmark %} icon-wordmark{% endif %}">{% if s.logo %}{% include icons/{{ s.logo }}.svg %}{% elsif s.img %}<img src="{{ '/assets/icons/' | append: s.img | relative_url }}" alt="">{% else %}{{ s.icon | default: '●' }}{% endif %}</span></div>
+  <a class="{% if size == 'wide' %}tile-wide{% else %}tile{% endif %} bg-ctp-{{ s.color | default: 'pink' }}" href="{{ s.url }}"{% if s.desc %} title="{{ s.desc }}"{% endif %}>
+    <div class="tile-content iconic"><span class="icon{% if s.wordmark %} icon-wordmark{% endif %}{% if s.mark %} icon-mark{% endif %}">{% if s.logo %}{% include icons/{{ s.logo }}.svg %}{% elsif s.img %}<img src="{{ '/assets/icons/' | append: s.img | relative_url }}" alt="">{% else %}{{ s.icon | default: '●' }}{% endif %}</span></div>
     {% if size == 'wide' and s.desc %}<span class="tile-desc">{{ s.desc }}</span>{% endif %}
     <span class="tile-label">{{ s.name }}</span>
   </a>
 {% endfor %}
 </div>
+<script>
+(function () {
+  // stagger the entrance animation by visual row, not DOM order — grid-
+  // auto-flow: dense means a tile's position in the markup often isn't
+  // its position on screen, so a flat per-item delay wouldn't line rows
+  // up together.
+  var tiles = [].slice.call(document.querySelectorAll(".tile-grid > a"));
+  var tops = tiles.map(function (t) { return t.offsetTop; });
+  var rows = tops
+    .filter(function (top, i) { return tops.indexOf(top) === i; })
+    .sort(function (a, b) { return a - b; });
+  tiles.forEach(function (t) {
+    var row = rows.indexOf(t.offsetTop);
+    t.style.animationDelay = (180 + row * 70) + "ms";
+  });
+})();
+</script>

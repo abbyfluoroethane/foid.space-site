@@ -1,0 +1,13 @@
+<div class="card friend-card">
+  <div class="card-head">
+    <h3 class="card-title">{{ include.friend.name }}{% if include.friend.handle %} <span class="card-handle">({{ include.friend.handle }})</span>{% endif %}</h3>
+  </div>
+  <p class="card-desc">{{ include.friend.desc }}</p>
+  {% if include.friend.links %}
+  <div class="card-meta">
+    {% for link in include.friend.links %}
+    <a class="card-link" href="{{ link.url }}">{{ link.label }} →</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>

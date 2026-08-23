@@ -1,0 +1,33 @@
+# Cards on the /friends/ page. Order here is display order.
+#
+# - name: display name (required)
+#   handle: shown in parens next to the name (optional)
+#   desc: short blurb (required)
+#   links:
+#     - label: example
+#     - url: https://example.com
+
+- name: abby
+  handle: abbyfluoroethane
+  desc: foid.space admin, breaker of things, and sender to space
+  links:
+    - label: website
+      url: https://bigaouette.com
+    - label: fedi
+      url: https://tech.lgbt/@abbyfluoroethane
+
+- name: riley
+  handle: riley0x80
+  desc: semi-professional spec sheet reader
+  links:
+    - label: website
+      url: https://zackerthescar.com
+    - label: fedi
+      url: https://tech.lgbt/@zackerthescar
+
+- name: Logan
+  handle: AllInTheGamingChair
+  desc: "[LOGAN FILL THIS IN]"
+  links:
+    - label: website
+      url: https://logantodd.com

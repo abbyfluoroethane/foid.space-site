@@ -129,13 +129,12 @@ a:hover {
 main > *:not(.tile-grid),
 .tile-grid .tile,
 .tile-grid .tile-wide,
-.site-footer {
+.tile-grid .tile-large {
   animation: metro-enter 0.7s cubic-bezier(0.1, 0.9, 0.2, 1) backwards;
 }
 .site-nav { animation-delay: 60ms; }
 main > *:not(.tile-grid) { animation-delay: 120ms; }
 /* tiles get individual stagger via inline animation-delay from the template */
-.site-footer { animation-delay: 400ms; }
 
 @media (prefers-reduced-motion: reduce) {
   .site-app-name,
@@ -144,7 +143,7 @@ main > *:not(.tile-grid) { animation-delay: 120ms; }
   main > *:not(.tile-grid),
   .tile-grid .tile,
   .tile-grid .tile-wide,
-  .site-footer {
+  .tile-grid .tile-large {
     animation: none;
   }
 }
@@ -263,6 +262,14 @@ main > *:not(.tile-grid) { animation-delay: 120ms; }
     width: 7rem;
     margin-left: -3.5rem;
   }
+  .tile-content.iconic .icon.icon-mark {
+    width: 70px;
+    height: 70px;
+    font-size: 70px;
+    line-height: 70px;
+    margin-top: -35px;
+    margin-left: -35px;
+  }
   /* metro's .tile-content uses height: inherit, which breaks under
      aspect-ratio sizing — make it track the tile instead */
   .tile-content {
@@ -316,6 +323,17 @@ main > *:not(.tile-grid) { animation-delay: 120ms; }
 .tile-content.iconic .icon.icon-wordmark {
   width: 10rem;
   margin-left: -5rem;
+}
+/* square glyph marks get a taller AND wider box — wordmark's box only
+   grows sideways, which leaves a square logo stuck at the default (small)
+   size, just centered in extra empty space */
+.tile-content.iconic .icon.icon-mark {
+  width: 100px;
+  height: 100px;
+  font-size: 100px;
+  line-height: 100px;
+  margin-top: -50px;
+  margin-left: -50px;
 }
 .tile-content.iconic .icon svg {
   display: block;
@@ -392,6 +410,48 @@ main code {
   font-size: 0.9em;
   background: var(--ctp-mantle);
   padding: 0.1em 0.3em;
+}
+
+/* ---- card lists (friends) ---- */
+.card-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1rem 0 2rem;
+}
+.card {
+  padding: 1.25rem 1.5rem;
+  background: var(--ctp-mantle);
+}
+.card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  text-transform: lowercase;
+}
+.card-handle {
+  color: var(--ctp-subtext0);
+  font-size: 0.9375rem;
+  font-weight: 400;
+}
+.card-desc {
+  margin: 0.5rem 0;
+  max-width: 62ch;
+}
+.card-meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.875rem;
+}
+.card-link {
+  text-decoration: none;
+  font-weight: 600;
 }
 
 /* ---- footer ---- */
