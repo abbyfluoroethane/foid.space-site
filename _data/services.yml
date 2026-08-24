@@ -35,6 +35,12 @@
   size: wide
   color: orange
 
+- name: money
+  url: https://money.foid.space
+  logo: sure
+  desc: sure
+  color: green
+
 - name: matrix
   url: https://matrix.foid.space
   logo: matrix
