@@ -41,17 +41,11 @@
   desc: sure
   color: green
 
-- name: matrix
-  url: https://matrix.foid.space
-  logo: matrix
-  desc: chat
+- name: chat
+  url: https://chat.foid.space
+  logo: xmpp
+  desc: fluux
   color: lavender
-
-- name: draw
-  url: https://draw.foid.space
-  logo: excalidraw
-  desc: excalidraw
-  color: teal
 
 - name: wiki
   url: https://wiki.foid.space
