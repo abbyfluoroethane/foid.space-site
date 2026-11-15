@@ -65,8 +65,11 @@ header .app a {
   color: inherit;
   text-decoration: none;
 }
+/* The hero is set tight, so descenders (the p in "foid.space") hang below
+   its box. The gap under it is a descender's depth (0.2em) plus the space,
+   so a title with descenders is as far from the nav as one without. */
 header h1 {
-  margin: 0 0 var(--fk-space-4) -0.04em;
+  margin: 0 0 calc(0.2em + var(--fk-space-4)) -0.04em;
 }
 /* One line, as on Windows Phone: on a narrow screen the headers run off the
    right edge and scroll sideways, without a scrollbar. */
