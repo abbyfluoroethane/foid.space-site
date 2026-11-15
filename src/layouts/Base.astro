@@ -1,9 +1,13 @@
 ---
 // The one layout. Home shows "foid.space" as the big title; other pages
 // show it small above their own title, as on Windows Phone.
-import 'fluorokit/fonts/selawik.css';
+import '@fontsource/ibm-plex-sans/300.css';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
 import 'fluorokit/structure.css';
-import 'fluorokit/themes/catppuccin.css';
+import 'fluorokit/themes/ink.css';
 import 'fluorokit/base.css';
 import '../styles/site.css';
 import { enterDirectionScript } from 'fluorokit/enter';
@@ -27,8 +31,8 @@ const path = Astro.url.pathname;
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title ? `${title} · foid.space` : 'foid.space'}</title>
   <meta name="description" content={description}>
-  <meta name="theme-color" content="#1e1e2e">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eff1f5">
+  <meta name="theme-color" content="#10131d">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f6f8">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/konata-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/konata-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon/konata-192.png">

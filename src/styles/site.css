@@ -1,12 +1,6 @@
-/* foid.space on fluorokit's catppuccin theme. The kit gives the tokens, the
-   type classes, the pivot and the tiles; this file is the reset, the page
-   shell and what is specific to this site. */
-
-/* Selawik (from the kit) for the Segoe UI look; Segoe UI itself on Windows. */
-:root {
-  --fk-font-sans: "Segoe UI", "Selawik", system-ui, sans-serif;
-  --fk-font-mono: "Cascadia Code", ui-monospace, "SF Mono", Menlo, monospace;
-}
+/* foid.space on stock fluorokit (the ink theme). The kit gives the tokens,
+   the type classes, the pivot and the tiles. It sets no element styles, so
+   this file is the reset, the page shell and the prose. */
 
 *,
 *::before,
@@ -77,8 +71,6 @@ header h1 {
 header nav {
   flex-wrap: wrap;
   row-gap: var(--fk-space-1);
-  /* foid.space's nav is larger than the kit's subpivot. */
-  --fk-subpivot-size: clamp(1.375rem, 4vw, 1.75rem);
 }
 main {
   margin-top: var(--fk-space-8);
@@ -102,8 +94,9 @@ main > :not(.fk-tile-grid) {
 main h2 {
   margin: var(--fk-space-8) 0 var(--fk-space-2);
   font-size: var(--fk-heading-size);
-  font-weight: 300;
+  font-weight: 600;
   line-height: var(--fk-heading-leading);
+  letter-spacing: -0.01em;
 }
 main p {
   margin: 0 0 var(--fk-space-4);
