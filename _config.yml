@@ -1,7 +1,0 @@
-title: foid.space
-description: hub for the services running on *.foid.space
-url: "https://foid.space"
-
-exclude:
-  - README.md
-  - LICENSE

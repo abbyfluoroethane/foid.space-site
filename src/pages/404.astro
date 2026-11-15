@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="404">
+  <div>
+    <p class="code">404</p>
+    <p class="fk-subheading">this tile doesn't exist. <a href="/">go home</a>.</p>
+  </div>
+</Base>
+
+<style>
+  .code {
+    margin: 0;
+    color: var(--fk-accent);
+    font-size: clamp(6rem, 25vw, 12rem);
+    font-weight: 300;
+    line-height: 1;
+  }
+</style>

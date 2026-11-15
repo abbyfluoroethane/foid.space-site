@@ -1,0 +1,20 @@
+{
+  "name": "foid.space-site",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The hub page for the services running on *.foid.space.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^7.3.5",
+    "fluorokit": "^0.1.0",
+    "yaml": "^2.9.1"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

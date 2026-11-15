@@ -1,0 +1,123 @@
+---
+import Base from '../layouts/Base.astro';
+import { SERVICES, icon } from '../site';
+
+// A tile's colours from its `color` in services.yml. The accents are the
+// theme's tile colours (Latte in both modes, with light text); surface and
+// white follow the mode.
+const fill = (color = 'pink') => {
+  if (color === 'surface') return 'background: var(--fk-raised); color: var(--fk-text)';
+  if (color === 'white') return 'background: var(--fk-deep); color: var(--fk-text)';
+  const name = color === 'orange' ? 'peach' : color;
+  return `--fk-tile-color: var(--fk-tile-${name})`;
+};
+---
+<Base>
+  <div class="fk-tile-grid tiles">
+    {SERVICES.map((s) => {
+      const wide = s.size === 'wide';
+      const svg = s.logo ? icon(s.logo) : undefined;
+      return (
+        <a class="fk-tile tile" data-size={wide ? 'wide' : undefined} href={s.url} title={s.desc} style={fill(s.color)}>
+          {svg ? (
+            <span class:list={['glyph', { wordmark: s.wordmark, mark: s.mark }]} set:html={svg} />
+          ) : s.img ? (
+            <span class="glyph"><img src={`/assets/icons/${s.img}`} alt="" /></span>
+          ) : (
+            <span class="glyph char">{s.icon ?? '●'}</span>
+          )}
+          {wide && s.desc && <span class="desc">{s.desc}</span>}
+          <span class="fk-label label">{s.name}</span>
+        </a>
+      );
+    })}
+  </div>
+</Base>
+
+<script>
+  // Stagger the page-enter by visual row, not by order in the markup: the
+  // grid packs tiles densely, so a tile's place in the markup is often not
+  // its place on screen.
+  const tiles = [...document.querySelectorAll<HTMLElement>('.tiles > .tile')];
+  const rows = [...new Set(tiles.map((t) => t.offsetTop))].sort((a, b) => a - b);
+  for (const t of tiles) t.style.animationDelay = `${180 + rows.indexOf(t.offsetTop) * 70}ms`;
+</script>
+
+<style>
+  .tile {
+    position: relative;
+    overflow: hidden;
+    animation: fk-enter var(--fk-enter-duration) var(--fk-ease-metro) backwards;
+    transition: transform 0.1s ease;
+  }
+  /* Hover outlines the tile; it does not darken it, as the kit's tiles do. */
+  .tile:hover {
+    outline: 3px solid var(--fk-overlay);
+    outline-offset: -3px;
+    background: var(--fk-tile-fill);
+  }
+  .tile:active {
+    transform: scale(0.97);
+    outline: 0;
+  }
+  /* The logo, in the middle of the tile. */
+  .glyph {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    width: 64px;
+    height: 64px;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    line-height: 64px;
+    text-align: center;
+  }
+  .glyph.wordmark {
+    width: 10rem;
+  }
+  .glyph.mark {
+    width: 100px;
+    height: 100px;
+  }
+  .glyph :global(svg),
+  .glyph img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+    object-fit: contain;
+  }
+  .desc {
+    position: absolute;
+    top: var(--fk-space-2);
+    left: var(--fk-space-3);
+    right: var(--fk-space-3);
+    font-size: var(--fk-label-size);
+    line-height: var(--fk-label-leading);
+    opacity: 0.85;
+  }
+  .label {
+    position: relative;
+  }
+  /* On a phone: three across, edge to edge, as on Windows Phone. */
+  @media (max-width: 767px) {
+    .tiles {
+      container-type: inline-size;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: calc((100cqi - 2 * var(--fk-tile-gap)) / 3);
+    }
+    .glyph {
+      width: 48px;
+      height: 48px;
+      font-size: 36px;
+      line-height: 48px;
+    }
+    .glyph.wordmark {
+      width: 7rem;
+    }
+    .glyph.mark {
+      width: 70px;
+      height: 70px;
+    }
+  }
+</style>

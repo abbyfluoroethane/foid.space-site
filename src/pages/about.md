@@ -1,7 +1,6 @@
 ---
-layout: default
+layout: ../layouts/Base.astro
 title: about
-permalink: /about/
 ---
 
 directory of services running on `*.foid.space`.

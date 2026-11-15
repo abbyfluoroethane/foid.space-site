@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import { FRIENDS } from '../site';
+---
+<Base title="friends">
+  <div class="friends">
+    {FRIENDS.map((f) => (
+      <article class="friend">
+        <h2 class="fk-subheading">{f.name.toLowerCase()}{f.handle && <span class="handle"> ({f.handle})</span>}</h2>
+        <p>{f.desc}</p>
+        {f.links && (
+          <p class="links">
+            {f.links.map((l) => <a href={l.url}>{l.label} →</a>)}
+          </p>
+        )}
+      </article>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .friends {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fk-space-4);
+    max-width: 44rem;
+  }
+  .friend {
+    padding: var(--fk-space-4) var(--fk-space-6);
+    background: var(--fk-mantle);
+  }
+  .friend h2 {
+    margin: 0 0 var(--fk-space-1);
+  }
+  .handle {
+    color: var(--fk-muted);
+    font-size: var(--fk-small-size);
+    font-weight: 400;
+  }
+  .friend p {
+    margin: 0;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--fk-space-4);
+    margin-top: var(--fk-space-2) !important;
+    font-size: var(--fk-small-size);
+    font-weight: 600;
+  }
+  .links a {
+    text-decoration: none;
+  }
+</style>
