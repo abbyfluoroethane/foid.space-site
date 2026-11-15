@@ -50,7 +50,7 @@ const path = Astro.url.pathname;
       ) : (
         <h1 class="fk-hero fk-enter">foid.space</h1>
       )}
-      <nav class="fk-pivot fk-pivot-sub fk-enter" style="--i: 1" aria-label="Site">
+      <nav class="fk-pivot fk-enter" style="--i: 1" aria-label="Site">
         {NAV.map((n) => <a href={n.href} aria-current={path === n.href ? 'page' : undefined}>{n.name}</a>)}
       </nav>
     </header>
@@ -58,5 +58,13 @@ const path = Astro.url.pathname;
       <slot />
     </main>
   </div>
+  <script>
+    // On a narrow screen the nav scrolls sideways: show the current page's header.
+    const current = document.querySelector<HTMLElement>('header nav [aria-current]');
+    const nav = current?.parentElement;
+    if (current && nav && current.offsetLeft + current.offsetWidth > nav.clientWidth) {
+      nav.scrollLeft = current.offsetLeft;
+    }
+  </script>
 </body>
 </html>

@@ -68,9 +68,18 @@ header .app a {
 header h1 {
   margin: 0 0 var(--fk-space-4) -0.04em;
 }
+/* One line, as on Windows Phone: on a narrow screen the headers run off the
+   right edge and scroll sideways, without a scrollbar. */
 header nav {
-  flex-wrap: wrap;
-  row-gap: var(--fk-space-1);
+  margin-right: calc(-1 * var(--fk-space-3));
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+header nav::-webkit-scrollbar {
+  display: none;
+}
+header nav a {
+  flex: none;
 }
 main {
   margin-top: var(--fk-space-8);
