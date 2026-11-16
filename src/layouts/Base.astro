@@ -54,7 +54,7 @@ const path = Astro.url.pathname;
         {NAV.map((n) => <a href={n.href} aria-current={path === n.href ? 'page' : undefined}>{n.name}</a>)}
       </nav>
     </header>
-    <main>
+    <main class="fk-enter-children">
       <slot />
     </main>
   </div>
